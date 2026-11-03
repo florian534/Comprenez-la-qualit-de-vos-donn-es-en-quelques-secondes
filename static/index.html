@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!-- Déclare le type de document HTML5 au navigateur -->
+
+<html lang="fr">
+<!-- Balise racine HTML, attribut lang="fr" pour l'accessibilité et le SEO -->
+
+<head>
+<!-- Zone d'en-tête non visible : métadonnées, styles, titre -->
+
+<meta charset="UTF-8">
+<!-- Encodage des caractères UTF-8 : supporte accents, emojis, etc. -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Responsive : adapte la largeur à l'écran, zoom initial à 1, couvre les encoches (iPhone) -->
+
+<title>Audit de données</title>
+<!-- Titre affiché dans l'onglet du navigateur et les résultats de recherche -->
+
+<link rel="stylesheet" href="/style.css">
+<!-- Charge la feuille de style CSS depuis la racine du serveur -->
+
+</head>
+<body>
+<a class="skip" href="#main-start">Aller au contenu</a>
+<!-- Lien d'évitement pour le clavier : visible seulement au focus, géré par ux.js -->
+<!-- Zone du contenu visible de la page -->
+
+<!-- ========== BANNIÈRE PRINCIPALE (HERO) ========== -->
+<header class="hero">
+<!-- En-tête sémantique, classe "hero" pour le style de bannière dégradée -->
+
+  <div class="in">
+  <!-- Conteneur centré (max-width 1120px défini en CSS) -->
+
+    <div class="brand">
+    <!-- Barre de marque : logo + nom + bouton thème -->
+
+      <div class="logo" id="logo"></div>
+      <!-- Logo de l'application (emoji/icône injectée par JavaScript via id="logo") -->
+
+      Audit de données
+      <!-- Nom de l'application en texte brut -->
+
+      <button class="theme" id="theme" title="Changer de thème" aria-label="Changer de thème"></button>
+      <!-- Bouton de basculement clair/sombre, title et aria-label pour l'accessibilité -->
+      <!-- Le contenu (emoji soleil/lune) est injecté par JavaScript -->
+
+    </div><!-- fin .brand -->
+
+    <h1>Comprenez la qualité de vos données <span>en quelques secondes</span></h1>
+    <!-- Titre principal H1, <span> pour appliquer le dégradé de texte sur la fin de phrase -->
+
+    <div class="intro">
+    <!-- Ligne : texte de présentation à gauche, robot endormi à droite -->
+
+      <p>Déposez vos fichiers : l'audit est calculé localement par Python et DuckDB, puis interprété par votre modèle Ollama.</p>
+      <!-- Sous-titre décrivant le fonctionnement de l'outil -->
+
+      <div class="robot" id="robot">
+      <!-- Petit robot endormi ; la classe "awake" est ajoutée par deck.js quand la présentation est ouverte -->
+
+        <button class="bubble" id="infoBtn" type="button" aria-haspopup="dialog">Cliquez ici pour avoir des informations</button>
+        <!-- Bulle au-dessus de la tête : ouvre la présentation (géré par deck.js) -->
+
+        <svg id="robotSvg" viewBox="0 0 180 150" width="190" height="158" role="img" aria-label="Petit robot endormi">
+          <ellipse cx="80" cy="144" rx="46" ry="6" fill="#000" opacity=".22"/>
+          <g class="rbody">
+            <rect x="46" y="88" width="68" height="50" rx="18" fill="#d8f5e4" stroke="#2d6a4f" stroke-width="3"/>
+            <circle class="rglow" cx="80" cy="112" r="9" fill="#7ee0b0"/>
+            <rect x="30" y="98" width="20" height="30" rx="10" fill="#bfeacf" stroke="#2d6a4f" stroke-width="3"/>
+            <rect x="110" y="98" width="20" height="30" rx="10" fill="#bfeacf" stroke="#2d6a4f" stroke-width="3"/>
+            <g transform="rotate(-7 80 66)">
+              <line x1="80" y1="36" x2="80" y2="22" stroke="#2d6a4f" stroke-width="3" stroke-linecap="round"/>
+              <circle class="rlight" cx="80" cy="17" r="6" fill="#e9c46a" stroke="#2d6a4f" stroke-width="2"/>
+              <circle cx="31" cy="66" r="7" fill="#2d6a4f"/><circle cx="129" cy="66" r="7" fill="#2d6a4f"/>
+              <rect x="36" y="36" width="88" height="62" rx="24" fill="#eafaf1" stroke="#2d6a4f" stroke-width="3"/>
+              <rect x="47" y="47" width="66" height="36" rx="15" fill="#12302a"/>
+              <path d="M57 65 q8 8 16 0 M87 65 q8 8 16 0" fill="none" stroke="#7ee0b0" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M74 74 q6 4 12 0" fill="none" stroke="#7ee0b0" stroke-width="2" stroke-linecap="round"/>
+            </g>
+          </g>
+          <g fill="#b7f0d2" font-family="Helvetica Neue, Arial, sans-serif" font-weight="700">
+            <text class="z z1" x="132" y="40" font-size="14">z</text>
+            <text class="z z2" x="146" y="24" font-size="18">Z</text>
+            <text class="z z3" x="160" y="8" font-size="22">Z</text>
+          </g>
+        </svg>
+        <!-- Robot dessiné en SVG : yeux fermés, antenne qui pulse, "Zzz" qui montent -->
+
+      </div><!-- fin .robot -->
+    </div><!-- fin .intro -->
+
+    <div class="chips">
+    <!-- Conteneur des badges de technologies supportées -->
+
+      <span class="chip">Parquet</span>
+      <!-- Badge format Parquet -->
+      <span class="chip">CSV · TSV</span>
+      <!-- Badge formats CSV et TSV -->
+      <span class="chip">JSON</span>
+      <!-- Badge format JSON -->
+      <span class="chip">DuckDB</span>
+      <!-- Badge moteur de base de données DuckDB -->
+      <span class="chip">Ollama</span>
+      <!-- Badge modèle IA local Ollama -->
+
+    </div><!-- fin .chips -->
+
+  </div><!-- fin .in -->
+</header><!-- fin .hero -->
+
+<!-- ========== ZONE D'UPLOAD (chevauchement hero) ========== -->
+<div class="wrap upload">
+<!-- .wrap : centrage horizontal | .upload : margin-top négatif pour chevaucher le hero -->
+
+  <div class="card reveal">
+  <!-- Carte avec effet d'apparition animée (classe reveal) -->
+
+    <div class="drop" id="drop">
+    <!-- Zone de glisser-déposer, id="drop" pour JavaScript -->
+
+      <div class="ico" id="upIco"></div>
+      <!-- Icône de la dropzone (emoji injecté par JS) avec animation flottante -->
+
+      <strong>Déposez vos fichiers ici</strong>
+      <!-- Instruction principale en gras -->
+
+      <span>ou cliquez pour parcourir · 1 fichier = 1 table · les PDF servent de documents de référence</span>
+      <!-- Instruction secondaire avec précision sur la correspondance fichier/table -->
+
+    </div><!-- fin .drop -->
+
+    <input type="file" id="file" multiple accept=".parquet,.csv,.tsv,.json,.pdf" class="hide">
+    <!-- Input fichier caché (déclenché par clic sur .drop via JS) -->
+    <!-- multiple : permet la sélection de plusieurs fichiers -->
+    <!-- accept : filtre les types de fichiers acceptés dans le sélecteur -->
+    <!-- class="hide" : masqué visuellement, remplacé par la dropzone -->
+
+    <div class="files" id="files"></div>
+    <!-- Zone d'affichage des fichiers sélectionnés (badges) injectée par JS -->
+
+    <details class="ctxbox">
+    <!-- Section dépliable native HTML pour le contexte métier -->
+
+      <summary>+ Ajouter un contexte métier (facultatif, aide l'IA)</summary>
+      <!-- Titre cliquable de la section dépliable -->
+
+      <textarea id="ctx" placeholder="Ex : Données des résultats physico-chimiques issues de Naïades pour la période 2020-2024"></textarea>
+      <!-- Zone de texte pour saisir le contexte (envoyé au modèle IA) -->
+      <!-- placeholder : exemple affiché quand le champ est vide -->
+
+          <div class="docs" id="docs">
+      <!-- Documents PDF de référence (RAG) : l'IA y cherche les passages utiles à l'analyse -->
+
+        <div class="docshead"><strong>Documents PDF</strong> <span class="muted">(facultatif) : règles, seuils, définitions que l'IA pourra consulter</span></div>
+        <!-- Titre et explication de la zone -->
+
+        <button type="button" class="ghost sm" id="docBtn">+ Ajouter des PDF</button>
+        <!-- Ouvre le sélecteur de fichiers PDF -->
+
+        <input type="file" id="docFile" accept=".pdf,application/pdf" multiple class="hide">
+        <!-- Input fichier caché pour les PDF -->
+
+        <div class="files" id="docList"></div>
+        <!-- Liste des PDF indexés (puces avec bouton de retrait), injectée par JS -->
+
+        <p id="docStatus" class="status muted"></p>
+        <!-- Résumé : nombre de passages et mode de recherche (sémantique ou mots-clés) -->
+
+      </div><!-- fin .docs -->
+
+    </details><!-- fin .ctxbox -->
+
+    <div id="progress" class="progress hide"></div>
+    <!-- Barre de progression animée (masquée par défaut, affichée pendant l'upload) -->
+
+    <p id="status" class="status muted" role="status" aria-live="polite"></p>
+    <!-- Paragraphe de statut (messages de progression/erreur injectés par JS) -->
+
+  </div><!-- fin .card -->
+</div><!-- fin .wrap.upload -->
+
+<!-- ========== ANIMATION « DU FICHIER AU RAPPORT » (pilotée par le défilement, flow.js) ========== -->
+<section class="flow" id="flow" aria-labelledby="flowTitle">
+<!-- Section haute (320 % de l'écran) ; son contenu reste épinglé pendant le défilement -->
+
+  <div class="flow-pin">
+  <!-- Zone épinglée à l'écran (position: sticky) -->
+
+    <div class="wrap">
+
+      <h2 id="flowTitle">Du fichier au rapport, <span>en quatre étapes</span></h2>
+      <p class="flow-sub">Faites défiler : chaque étape s'allume à son tour.</p>
+
+      <div class="flow-track">
+      <!-- Ligne qui se remplit avec le défilement + point lumineux qui la parcourt -->
+        <div class="flow-line" aria-hidden="true"><i></i></div>
+        <div class="flow-pulse" aria-hidden="true"></div>
+
+        <ol class="flow-steps">
+
+          <li>
+            <span class="flow-node" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span>
+            <div class="flow-txt"><span class="flow-n">Étape 1</span><h3>Vos fichiers</h3>
+            <p>Parquet, CSV, TSV ou JSON : un fichier = une table. Les PDF servent de documents de référence.</p></div>
+          </li>
+
+          <li>
+            <span class="flow-node" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>
+            <div class="flow-txt"><span class="flow-n">Étape 2</span><h3>Audit local</h3>
+            <p>Python et DuckDB calculent lignes, valeurs manquantes, doublons, valeurs négatives et statistiques.</p></div>
+          </li>
+
+          <li>
+            <span class="flow-node" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
+            <div class="flow-txt"><span class="flow-n">Étape 3 · facultative</span><h3>Recherche dans vos PDF</h3>
+            <p>Recherche hybride : le sens (embeddings) et les mots-clés (BM25), avec des scores normalisés.</p></div>
+          </li>
+
+          <li>
+            <span class="flow-node" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></span>
+            <div class="flow-txt"><span class="flow-n">Étape 4</span><h3>Rapport par l'IA</h3>
+            <p>Votre modèle Ollama reçoit le résumé de l'audit, pas vos données brutes, et rédige l'analyse en citant ses sources.</p></div>
+          </li>
+
+        </ol>
+      </div><!-- fin .flow-track -->
+
+      <div class="flow-foot">
+        <div class="flow-progress" aria-hidden="true"><span></span></div>
+        <button type="button" class="btn flow-cta" id="flowCta">Déposer mes fichiers</button>
+        <!-- Visible une fois l'animation terminée : ramène à la zone de dépôt -->
+      </div>
+
+    </div><!-- fin .wrap -->
+  </div><!-- fin .flow-pin -->
+</section><!-- fin .flow -->
+
+<!-- ========== SECTION RÉSULTATS (masquée jusqu'à l'analyse) ========== -->
+<div id="result" class="hide">
+<!-- Conteneur principal des résultats, masqué par défaut, révélé par JS après analyse -->
+
+  <nav class="subnav">
+  <!-- Navigation secondaire sticky (reste visible pendant le défilement) -->
+
+    <div class="in" id="nav">
+    <!-- Conteneur centré de la sous-navigation, id="nav" pour manipulation JS -->
+
+      <a href="#s-over">Vue d'ensemble</a>
+      <!-- Lien ancre vers la section Vue d'ensemble -->
+
+      <a href="#s-find">Constats</a>
+      <!-- Lien ancre vers la section Constats (problèmes détectés) -->
+
+      <a href="#s-tables">Tables</a>
+      <!-- Lien ancre vers la section détail des tables -->
+
+      <a href="#s-ai">Analyse IA</a>
+      <!-- Lien ancre vers la section d'analyse par Ollama -->
+
+      <a href="#s-ask">Questions</a>
+      <!-- Lien ancre vers la section chat/questions libres -->
+
+      <a href="#s-eval">Évaluation</a>
+      <!-- Lien ancre vers la section d'évaluation (P@k, R@k, NDCG@k, pass@k, cons@k) -->
+
+      <span class="sp"></span>
+      <!-- Espaceur flexible qui pousse les boutons suivants à droite -->
+
+      <button class="ghost sm" id="toggleAll" type="button" hidden>Tout replier</button>
+      <!-- Replie / déplie toutes les sections du rapport (géré par ux.js) -->
+
+      <button class="ghost sm" id="dlJson"></button>
+      <!-- Bouton d'export en JSON (style ghost/petit), contenu injecté par JS -->
+
+      <button class="ghost sm" id="dlHtml"></button>
+      <!-- Bouton d'export du rapport en HTML, contenu injecté par JS -->
+
+    </div><!-- fin #nav -->
+  </nav><!-- fin .subnav -->
+
+  <main class="wrap" id="report"></main>
+  <!-- Zone principale du rapport, contenu HTML entièrement généré par JavaScript -->
+  <!-- <main> : balise sémantique pour le contenu principal de la page -->
+
+</div><!-- fin #result -->
+
+<!-- ========== PIED DE PAGE ========== -->
+<div class="foot">Audit Python / DuckDB · Analyse Ollama</div>
+<!-- Mention de la stack technique utilisée -->
+
+<!-- ========== SCRIPTS JAVASCRIPT ========== -->
+<script src="/bg.js"></script>
+<!-- Script du fond animé 3D (gère les plans CSS 3D et l'animation du sol) -->
+
+<script src="/deck.js"></script>
+<!-- Visionneuse de présentation (robot + diaporama plein écran) -->
+
+<script src="/app.js"></script>
+<!-- Script principal de l'application (gestion upload, audit, rendu rapport, IA, chat) -->
+
+<script src="/ux.js"></script>
+<!-- Confort -->
+
+<script src="/fx.js"></script>
+<!-- Transitions : apparition des sections en fondu au défilement -->
+
+<script src="/flow.js"></script>
+<!-- Animation « Du fichier au rapport » pilotée par le défilement -->
+<!-- Confort : retour en haut, sections repliables, accessibilité clavier, étapes de l'analyse -->
+
+</body>
+</html>
