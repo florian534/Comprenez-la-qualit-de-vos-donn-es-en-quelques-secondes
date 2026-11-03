@@ -674,3 +674,125 @@ input:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px 
 }
 /* Pendant l'animation épinglée, le bouton « retour en haut » est masqué (il recouvrirait le contenu) */
 body.in-flow .totop{display:none}
+
+/* ============================================================
+   ROBOT : ENDORMI / REVEILLE
+   ============================================================ */
+
+/* Les yeux ouverts ne sont pas visibles tant que le robot dort */
+.awake-eye,
+.awake-eye-shine {
+  display: none;
+}
+
+/* Quand le robot est réveillé, les yeux fermés disparaissent */
+.robot.awake .sleep-eyes,
+.deckrobot.awake .sleep-eyes {
+  display: none;
+}
+
+/* Les yeux ouverts apparaissent */
+.robot.awake .awake-eye,
+.robot.awake .awake-eye-shine,
+.deckrobot.awake .awake-eye,
+.deckrobot.awake .awake-eye-shine {
+  display: block;
+}
+
+/* Animation du réveil */
+.robot.awake .rbody,
+.deckrobot.awake .rbody {
+  animation: robot-awake 0.7s ease-out both;
+}
+
+/* Antenne lumineuse lorsque le robot est réveillé */
+.robot.awake .rlight,
+.deckrobot.awake .rlight {
+  fill: #7ee0b0;
+  filter: drop-shadow(0 0 8px #7ee0b0);
+  animation: none;
+}
+
+/* Suppression des Zzz */
+.robot.awake .z,
+.deckrobot.awake .z {
+  opacity: 0;
+  animation: none;
+}
+
+/* Animation du corps du robot */
+@keyframes robot-awake {
+  0% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+  35% {
+    transform: rotate(-8deg) translateY(-10px);
+  }
+
+  65% {
+    transform: rotate(6deg) translateY(-4px);
+  }
+
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+}
+
+/* ============================================================
+   COPIE DU ROBOT EN HAUT A DROITE DES SLIDES
+   ============================================================ */
+
+.deckrobot {
+  position: absolute;
+  z-index: 30;
+
+  top: 8px;
+  right: 10px;
+
+  width: 118px;
+  height: auto;
+
+  pointer-events: none;
+
+  filter: drop-shadow(0 10px 12px rgba(0, 0, 0, 0.32));
+
+  animation: robot-arrival 0.55s cubic-bezier(.2, .9, .2, 1) both;
+}
+
+.deckrobot svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Apparition du robot dans la présentation */
+@keyframes robot-arrival {
+  from {
+    opacity: 0;
+    transform: translate(45px, -35px) scale(0.65) rotate(12deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+}
+
+/* Robot plus petit sur smartphone */
+@media (max-width: 600px) {
+  .deckrobot {
+    width: 78px;
+    top: 4px;
+    right: 4px;
+  }
+}
+
+/* Désactive l'animation si l'utilisateur préfère moins de mouvements */
+@media (prefers-reduced-motion: reduce) {
+  .robot.awake .rbody,
+  .deckrobot.awake .rbody,
+  .deckrobot {
+    animation: none;
+  }
+}
