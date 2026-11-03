@@ -75,8 +75,33 @@
               <circle cx="31" cy="66" r="7" fill="#2d6a4f"/><circle cx="129" cy="66" r="7" fill="#2d6a4f"/>
               <rect x="36" y="36" width="88" height="62" rx="24" fill="#eafaf1" stroke="#2d6a4f" stroke-width="3"/>
               <rect x="47" y="47" width="66" height="36" rx="15" fill="#12302a"/>
-              <path d="M57 65 q8 8 16 0 M87 65 q8 8 16 0" fill="none" stroke="#7ee0b0" stroke-width="3.5" stroke-linecap="round"/>
-              <path d="M74 74 q6 4 12 0" fill="none" stroke="#7ee0b0" stroke-width="2" stroke-linecap="round"/>
+
+<!-- Yeux fermés : robot endormi -->
+<path
+  class="sleep-eyes"
+  d="M57 65 q8 8 16 0 M87 65 q8 8 16 0"
+  fill="none"
+  stroke="#7ee0b0"
+  stroke-width="3.5"
+  stroke-linecap="round"
+/>
+
+<!-- Yeux ouverts : visibles lorsque le robot est réveillé -->
+<circle class="awake-eye" cx="65" cy="62" r="5" fill="#7ee0b0"/>
+<circle class="awake-eye" cx="95" cy="62" r="5" fill="#7ee0b0"/>
+
+<!-- Reflets des yeux -->
+<circle class="awake-eye-shine" cx="63.5" cy="60.5" r="1.3" fill="#eafaf1"/>
+<circle class="awake-eye-shine" cx="93.5" cy="60.5" r="1.3" fill="#eafaf1"/>
+
+<!-- Bouche -->
+<path
+  d="M74 74 q6 4 12 0"
+  fill="none"
+  stroke="#7ee0b0"
+  stroke-width="2"
+  stroke-linecap="round"
+/>
             </g>
           </g>
           <g fill="#b7f0d2" font-family="Helvetica Neue, Arial, sans-serif" font-weight="700">
