@@ -86,30 +86,31 @@ Le projet inclut des modules d’évaluation pour mesurer :
 
 ```text
 data-audit-ai/
-│
-├── server.py          # Serveur Flask et routes API
-├── main.py            # Exécution CLI de l'audit complet
-├── config.py          # Configuration générale et variables d'environnement
-├── database.py        # Connexion DuckDB et lecture des fichiers
-├── audit.py           # Contrôles de qualité des données
-├── charts.py          # Génération des graphiques Matplotlib
-├── report.py          # Génération du rapport HTML
-├── agent.py           # Analyse d'audit par Ollama
-├── qa.py              # Agent Text-to-SQL sécurisé
-├── rag.py             # Indexation PDF et recherche RAG hybride
-├── evaluator.py       # Évaluation hybride du rapport IA
-├── qa_eval.py         # Évaluation du Text-to-SQL : pass@k, cons@k
-├── rag_eval.py        # Évaluation RAG : P@k, R@k, NDCG@k, RR@k
-│
-├── static/
-│   ├── index.html     # Interface utilisateur
-│   ├── style.css      # Styles CSS
-│   ├── app.js         # Logique JavaScript côté navigateur
-│   ├── images/        # Images éventuelles
-│   └── presentations/ # Présentations PowerPoint éventuelles
-│
-├── requirements.txt
-├── README.md
+projet/
+├── server.py        serveur web (Flask) : point d'entrée de l'interface
+├── main.py          mode ligne de commande (sans interface web)
+├── config.py        paramètres et découverte automatique des tables
+├── database.py      connexion DuckDB et lecture des fichiers
+├── audit.py         calcul de l'audit et des distributions
+├── agent.py         analyse rédigée par Ollama
+├── qa.py            questions en langage naturel (texte → SQL → réponse)
+├── rag.py           recherche dans les PDF (passages, embeddings, BM25, hybride)
+├── rag_eval.py      qualité de la recherche : P@k, R@k, NDCG@k, RR@k
+├── qa_eval.py       fiabilité du Text-to-SQL : pass@k, cons@k
+├── evaluator.py     juge du rapport rédigé par l'IA
+├── charts.py        graphiques PNG (mode ligne de commande)
+├── report.py        rapport HTML statique (mode ligne de commande)
+└── static/
+    ├── index.html           structure de la page
+    ├── style.css            apparence et animations (thèmes clair et sombre)
+    ├── app.js               logique de la page
+    ├── bg.js                fond animé 3D (décor de la page)
+    ├── deck.js              visionneuse de présentation (robot endormi)
+    ├── ux.js                confort : repli, retour en haut, accessibilité
+    ├── fx.js                apparition des sections en fondu
+    ├── flow.js              parcours animé « Du fichier au rapport »
+    ├── pptx-preview.umd.js  bibliothèque tierce de lecture des .pptx
+    └── presentations/       présentation .pptx affichée par le robot
 ```
 
 ## Prérequis
